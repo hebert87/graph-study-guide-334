@@ -1,11 +1,11 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import javax.swing.border.Border;
 
 public class Practice {
 
@@ -58,6 +58,32 @@ public class Practice {
     return count;
   }
 
+  public static int oddVerticesIterativeDFS(Vertex<Integer> starting) {
+    if (starting == null){
+      return 0;
+    }
+
+    Set<Vertex<Integer>> visited = new HashSet<>();
+    Deque<Vertex<Integer>> stack = new ArrayDeque<>(); 
+
+    stack.push(starting);
+    visited.add(starting);
+
+    int count = 0;
+
+    while(!stack.isEmpty()){
+      Vertex<Integer> current = stack.pop();
+      if(current.data % 2 != 0){
+        count++;
+      }
+      for(Vertex<Integer> neighbor : current.neighbors){
+        if(neighbor != null && visited.add(neighbor)){
+          stack.push(neighbor);
+        }
+      }
+    }
+    return count;
+  }
 
 
 
@@ -345,4 +371,5 @@ public class Practice {
       }
     }
     return moves;
+  }
 }
