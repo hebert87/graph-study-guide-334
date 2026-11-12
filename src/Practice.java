@@ -77,7 +77,7 @@ public class Practice {
         count++;
       }
       for(Vertex<Integer> neighbor : current.neighbors){
-        if(neighbor != null && visited.add(neighbor)){
+        if(neighbor != null && !visited.contains(neighbor)){
           stack.push(neighbor);
         }
       }
